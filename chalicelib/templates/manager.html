@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<link rel="icon" href="data:;base64,iVBORw0KGgo=">
+
+<html>
+  <head>
+    <title>Pinterest Content Safety -- Manager page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <style type="text/css">
+      .container {
+        max-width: 500px;
+        padding-top: 50px;
+      }
+    </style>
+  </head>
+  
+  <body>
+      <center><h1>Pinterest Content Safety -- Manager page</h1></center>
+      <hr>
+      <div class="container">
+        <h3>Untouched complaints</h3>
+        <ul>
+        {% for c in my_dict['complaint'] %}
+            <li>{{ c.complaint_timestamp }} &nbsp;&nbsp;&nbsp; complaint_id={{ c.complaint_id }}</li>
+        {% endfor %}
+        </ul>
+        
+        <h3>In review complaints</h3>
+        <ul>
+        {% for c in my_dict['review'] %}
+            <li>{{ c.complaint_timestamp }} &nbsp;&nbsp;&nbsp; complaint_id={{ c.complaint_id }}</li>
+        {% endfor %}
+        </ul>
+        
+        <h3>Done complaints</h3>
+        <ul>
+        {% for c in my_dict['done'] %}
+            <li>{{ c.complaint_timestamp }} &nbsp;&nbsp;&nbsp; complaint_id={{ c.complaint_id }}</li>
+        {% endfor %}
+        </ul>
+        <p>
+          <center><table>
+              <tr><td>
+                <form action="home" method="GET">
+                    <input type="submit" value="Return to splash page">
+                </form>
+              </td><td>
+                <form action="reset" method="GET">
+                    <input type="submit" value="Reset Content">
+                </form>
+              </td></tr><tr><td>
+              </td><td>
+                 Note: This is NOT a multiuser function. Reseting the content database affects all users.
+              </td></tr>
+        </table></center>
+        
+        
+      </div>
+    <hr>
+    <a href="http://www.boliek.net"><img src="https://s3-us-west-2.amazonaws.com/boliek-public/icons/customLogo.gif" width=200></a>
+    <hr>
+    <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+  </body>
+</html>

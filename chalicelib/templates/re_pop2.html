@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<link rel="icon" href="data:;base64,iVBORw0KGgo=">
+
+<html>
+  <head>
+    <title>Pinterest Content Safety -- Review Image page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <style type="text/css">
+      .container {
+        max-width: 500px;
+        padding-top: 50px;
+      }
+    </style>
+  </head>
+  
+  <body>
+    <center><h1>Pinterest Content Safety -- Review Image page</h1></center>
+    <hr>
+    <p>
+    <center><img src="{{ my_dict.url }}" width=400></center>
+    <p>
+        <form action="re_submit" method="GET">
+            <center>Who are you?</center>
+            <center><table>
+                <tr><td>
+                    <input type="radio" name="reviewer" value="{{ my_dict.email1 }}" checked> {{ my_dict.email1 }}
+                </tr></td><tr><td>
+                    <input type="radio" name="reviewer" value="{{ my_dict.email2 }}"> {{ my_dict.email2 }}
+                </tr></td><tr><td>
+                    <input type="radio" name="reviewer" value="{{ my_dict.email3 }}"> {{ my_dict.email3 }}
+                </tr></td>
+            </table></center>
+            <p>
+            <center><table>
+                <tr><td>
+                    <input type="radio" name="comp" value="Bad" checked>Bad<br>
+                </td><td>
+                    <input type="radio" name="comp" value="Good">Good<br>
+                </tr></td>
+            </table></center>
+            
+            <center>complaint_id<input type="text" name="complaint_id" value="{{ my_dict.complaint_id }}" readonly size=4>
+            sqs_handle<input type="text" name="sqs_handle" value="{{ my_dict.sqs_handle }}" readonly size=10>
+            </center>
+            
+            <center><input type="submit" value="Submit"></center>
+        </form>
+    
+    <hr>
+    <a href="http://www.boliek.net"><img src="https://s3-us-west-2.amazonaws.com/boliek-public/icons/customLogo.gif" width=200></a>
+    <hr>
+    <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+  </body>
+</html>
