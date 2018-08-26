@@ -40,7 +40,7 @@ There are only two critical Python scripts in this system. The ```app.py``` has 
 
 Below is a block diagram of the dataflow in the design. Note that every web page and step is stateless and uses a API call implemented in API Gateway + Lambda (not shown).
 
-![Design diagram] (https://github.com/boliek/contentsafety/blob/master/design.png "Design diagram")
+![Design diagram](contentsafety/design.png "Design diagram")
 
 
 
