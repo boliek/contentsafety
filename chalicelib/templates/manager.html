@@ -8,8 +8,8 @@
     <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" media="screen">
     <style type="text/css">
       .container {
-        max-width: 500px;
-        padding-top: 50px;
+        max-width: 600px;
+        padding-top: 0px;
       }
     </style>
   </head>
@@ -21,21 +21,21 @@
         <h3>Untouched complaints</h3>
         <ul>
         {% for c in my_dict['complaint'] %}
-            <li>{{ c.complaint_timestamp }} &nbsp;&nbsp;&nbsp; complaint_id={{ c.complaint_id }}</li>
+            <li>{{ c.complaint_timestamp }} &nbsp;&nbsp;&nbsp; complaint_id={{ c.complaint_id }} &nbsp;&nbsp;&nbsp; display_status={{ c.display_status }}</li>
         {% endfor %}
         </ul>
         
         <h3>In review complaints</h3>
         <ul>
         {% for c in my_dict['review'] %}
-            <li>{{ c.complaint_timestamp }} &nbsp;&nbsp;&nbsp; complaint_id={{ c.complaint_id }}</li>
+            <li>{{ c.complaint_timestamp }} &nbsp;&nbsp;&nbsp; complaint_id={{ c.complaint_id }} &nbsp;&nbsp;&nbsp; display_status={{ c.display_status }}</li>
         {% endfor %}
         </ul>
         
         <h3>Done complaints</h3>
         <ul>
         {% for c in my_dict['done'] %}
-            <li>{{ c.complaint_timestamp }} &nbsp;&nbsp;&nbsp; complaint_id={{ c.complaint_id }}</li>
+            <li>{{ c.complaint_timestamp }} &nbsp;&nbsp;&nbsp; complaint_id={{ c.complaint_id }} &nbsp;&nbsp;&nbsp; display_status={{ c.display_status }}</li>
         {% endfor %}
         </ul>
         <p>
@@ -56,6 +56,12 @@
         
         
       </div>
+    <hr>
+    <i>&nbsp;&nbsp;&nbsp;&nbsp; Suggested flow for first time users<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; 1) Pinners -> select image -> Submit -> Return to splash page<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; 2) Reviewers -> Next complaint -> Submit -> Return to splash page<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; 3) Pinners -> note that the image is gone -> browser back button<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; 4) Managers -> Reset Content -> Pinner page -> note that the image is back</i>
     <hr>
     <a href="http://www.boliek.net"><img src="https://s3-us-west-2.amazonaws.com/boliek-public/icons/customLogo.gif" width=200></a>
     <hr>

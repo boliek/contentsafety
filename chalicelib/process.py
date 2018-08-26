@@ -341,7 +341,10 @@ def file_complaint(redata):
     # if so, no sqs message is sent
     # we could also search on near by images or image features
     prior_complaints = get_complaints_for_content(complaint['content_id'])
-    if not prior_complaints == []: sqsmessage = False
+    if not prior_complaints == []: 
+        for p in prior_complaints:
+            if p['process_status'] == 'complaint':
+                sqsmessage = False
     
     # post the complaint to the table
     complaint_id = put_complaint(complaint)
@@ -364,34 +367,33 @@ def review_complaint(redata):
         return success
     """
     # get data
-    if redata['comp'] == 'Bad':
-        complaint = get_complaint(redata['complaint_id'])
-    
-        if complaint != None:
-            complaint_list = get_complaints_for_content(complaint['content_id'])
-            content = get_content(complaint['content_id'])
-            reviewer = get_reviewer_from_email(redata['reviewer'])
-    
-            # update data
-            timestamp = datetime.datetime.now()
-            for c in complaint_list:
-                c['review_timestamp'] = timestamp
-                c['reviewer_id'] = reviewer['reviewer_id']
-                c['process_status'] = 'done'
-    
-            # pull image from display if necessary
-            if redata['comp'] == 'Bad':
-                content['display_status'] = complaint['complaint_type']
-                update_content(content)
-        
-                for c in complaint_list:
-                    c['display_status'] = complaint['complaint_type']
+    complaint = get_complaint(redata['complaint_id'])
 
-            for c in complaint_list:
-                update_complaint(c)
+    if complaint != None:
+        complaint_list = get_complaints_for_content(complaint['content_id'])
+        content = get_content(complaint['content_id'])
+        reviewer = get_reviewer_from_email(redata['reviewer'])
 
-        # delete sqs message
-        success = delete_sqsmessage(redata['sqs_handle'])
+        # update data
+        timestamp = datetime.datetime.now()
+        for c in complaint_list:
+            c['review_timestamp'] = timestamp
+            c['reviewer_id'] = reviewer['reviewer_id']
+            c['process_status'] = 'done'
+
+        # pull image from display if necessary
+        if redata['comp'] == 'Bad':
+            content['display_status'] = complaint['complaint_type']
+            update_content(content)
+    
+            for c in complaint_list:
+                c['display_status'] = complaint['complaint_type']
+
+        for c in complaint_list:
+            update_complaint(c)
+
+    # delete sqs message
+    success = delete_sqsmessage(redata['sqs_handle'])
 
 
 # ------------------------------------------------------------------------------

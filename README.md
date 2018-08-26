@@ -40,10 +40,15 @@ There are only two critical Python scripts in this system. The ```app.py``` has 
 
 Below is a block diagram of the dataflow in the design. Note that every web page and step is stateless and uses a API call implemented in API Gateway + Lambda (not shown).
 
-![Design diagram](contentsafety/design.png "Design diagram")
+![Design diagram](design.png "Design diagram")
 
+The ```pinner``` page displays the content from the content table. After user selection, the '''pinner complaint``` page displays the content in question.
 
+The ```pinner submission``` page creates the complaint record and sends the SQS message, if necessary.
 
+The ```reviewer``` page reads the SQS message and displays the content in question. After a decision, the ```reviewer next``` updates the complaint, deletes the SQS message from the queue, and updates the content, if necessary.
+
+The ```manager``` page displays the complaint table contents. (Smarter monitoring is necessary for scale.) The ```manager reset``` page sets all of the content to 'good' to start over.
 
 ## <a name="database_schema"></a>Database schema
 There are four tables and a queues. The pinners table is a list of pinners (users) and is not changed by this system. Likewise, the reviewer table is a list of reviews and is not changed.
