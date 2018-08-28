@@ -133,6 +133,8 @@ The SQS queue is another point of failure. The database can be automatically que
 
 The Lambda function (I think) is inherently multi-AZ so there is good redundancy. For performance, we can also make that multi-Region.
 
+Also note, every time a service is called there should be exception handling and a recovery plan (both immediate and delayed). In this case, access to the SQS queue and the RDS database are the most critical. (The demo does not include complete exception handling and planning.) The S3 database is serving the content and is also a potential source of failure, although lessor.
+
 #### Maintenance and modularity
 This system is very simple. With less than 1000 lines of Python and rather repetitive HTML templates, it took only hours to write and could be understood in minute.
 
